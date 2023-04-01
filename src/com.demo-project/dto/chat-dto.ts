@@ -13,3 +13,10 @@ class Messages{
     @IsNotEmpty()
     content: string;
 }
+
+export class Chat {
+    @IsNotEmpty({
+
+    })
+    message: string;
+}
