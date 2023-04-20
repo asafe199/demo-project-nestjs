@@ -1,0 +1,28 @@
+version: 3.9
+
+services:
+  db:
+    image: postgres
+    container_name: db_service
+    ports:
+      - "${DB_PORT}":"${DB_PORT}"
+    environment:
+      POSTGRES_USER: "${DATA_USER}"
+      POSTGRES_PASSWORD: "${DATA_PASSWORD}"
+      POSTGRES_DB: "${DB_DATABASE}"
+    volumes:
+    - db_service_pgdata:/var/lib/postgres/data
+    expose:
+      - "${DB_PORT}"
+    networks:
+      - portal-network
+
+networks:
+  portal-network:
+    driver: bridge
+    external: true
+
+volumes:
+  db_service_pgdata:
+    external: true
+

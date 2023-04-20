@@ -1,16 +1,13 @@
-import { HttpModule } from '@nestjs/axios';
-import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
-import { ChatGptController } from "../controller/chat-controller";
-import { ChatGtpService } from "../services/chat.service";
-import { HttpInterceptor } from '../services/interceptor/http-interceptor';
+import {HttpModule} from '@nestjs/axios';
+import {Module} from '@nestjs/common';
+import {ChatGptController} from "../controller/chat-controller";
+import {ChatGtpService} from "../services/chat.service";
 
 @Module({
     imports: [HttpModule],
     controllers: [ChatGptController],
     providers: [ChatGtpService],
 })
-export class ChatModule implements NestModule{
-    configure(consumer: MiddlewareConsumer) {
-        consumer.apply(HttpInterceptor).forRoutes(ChatGptController);        
-    }
+export class ChatModule {
+
 }

@@ -1,9 +1,9 @@
-import { HttpService } from '@nestjs/axios';
-import { Injectable } from '@nestjs/common';
-import { AxiosResponse } from 'axios';
-import { Configuration, OpenAIApi } from 'openai';
-import { Observable } from 'rxjs';
-import { Chat } from '../dto/chat-dto';
+import {HttpService} from '@nestjs/axios';
+import {Injectable} from '@nestjs/common';
+import {AxiosResponse} from 'axios';
+import {Configuration, OpenAIApi} from 'openai';
+import {Observable} from 'rxjs';
+import {Chat} from '../dto/chat-dto';
 
 @Injectable()
 export class ChatGtpService {
@@ -25,13 +25,12 @@ export class ChatGtpService {
   }
 
   async chat(chat: Chat) : Promise<any>{
-    const response = await this.openAi.createCompletion({
+    return await this.openAi.createCompletion({
       model: "text-davinci-003",
       prompt: chat.message,
       temperature: 0,
       max_tokens: 7,
       stop: ['\n']
     });
-    return response;
   }
 }
