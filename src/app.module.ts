@@ -3,12 +3,13 @@ import {ChatModule} from './com.demo-project/modules/chat.module';
 import {ConfigModule} from '@nestjs/config';
 import {UserModule} from "./com.demo-project/modules/user.module";
 import {TypeOrmModule} from "@nestjs/typeorm";
-import {PrismaService} from "./com.demo-project/services/prisma.service";
+import {ProductModule} from "./com.demo-project/modules/product.module";
 
 @Module({
-    imports: [ChatModule, UserModule,
+    imports: [ChatModule, UserModule, ProductModule,
         ConfigModule.forRoot({
-            isGlobal: true
+            isGlobal: true,
+            envFilePath: ['.env', '.prod.env']
         }),
         TypeOrmModule.forRoot({
             type: "postgres",
@@ -20,7 +21,7 @@ import {PrismaService} from "./com.demo-project/services/prisma.service";
         })
     ],
     controllers: [],
-    providers: [PrismaService],
+    providers: [],
 })
 export class AppModule {
 }

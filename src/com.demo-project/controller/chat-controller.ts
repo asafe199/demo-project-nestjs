@@ -1,8 +1,10 @@
 import { Body, Controller, Get, HttpStatus, Post, Res } from '@nestjs/common';
-import { ChatGtpService } from '../services/chat.service';
+import { ChatGtpService } from '../services/chat-service';
 import { Response } from 'express';
 import { Chat } from '../dto/chat-dto';
+import {ApiTags} from "@nestjs/swagger";
 
+@ApiTags('chat')
 @Controller('chat')
 export class ChatGptController {
 
